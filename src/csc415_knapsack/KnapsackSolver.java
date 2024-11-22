@@ -56,7 +56,8 @@ public class KnapsackSolver {
                     board.copyCell(r, c, preCellTop);
                 } else if (c == items[r].weight - 1) {
                     if (preCellLeft != null) {
-                        if (preCellTop.curValue < items[r].value && preCellLeft.curValue < items[r].value) {
+                        if (preCellTop.curValue < items[r].value
+                                && preCellLeft.curValue < items[r].value) {
                             board.set(r, c, items[r]);
                         } else if (preCellTop.curValue < preCellLeft.curValue) {
                             board.copyCell(r, c, preCellLeft);
@@ -74,9 +75,10 @@ public class KnapsackSolver {
                     int remainWeight = c + 1 - items[r].weight;
                     KnapsackBoardCells preCellRemain = board.get(r - 1, remainWeight - 1);
                     int tempValue = items[r].value + preCellRemain.curValue;
-                    //int tempWeight = items[r].weight + board.get(r, remainWeight).curWeight;
+
                     if (preCellLeft != null) {
-                        if (preCellTop.curValue < tempValue && preCellLeft.curValue < tempValue) {
+                        if (preCellTop.curValue < tempValue
+                                && preCellLeft.curValue < tempValue) {
                             board.copyCell(r, c, preCellRemain);
                             board.set(r, c, items[r]);
                         } else if (preCellTop.curValue < preCellLeft.curValue) {
@@ -97,3 +99,6 @@ public class KnapsackSolver {
         board.printFullBoard();
     }
 }
+
+
+
